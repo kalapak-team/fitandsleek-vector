@@ -62,9 +62,13 @@ function StickyPanel({
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
   total: number;
 }) {
-  const start = index / total;
-  const end = (index + 0.85) / total;
-  const opacity = useTransform(progress, [start, start + 0.08, end, end + 0.08], [0.25, 1, 1, 0.25]);
+  // Input stops must stay in [0, 1] — WAAPI throws if Framer maps offsets outside that range.
+  const segment = 1 / total;
+  const start = index * segment;
+  const fadeIn = Math.min(start + segment * 0.2, 1);
+  const fadeOut = Math.min(start + segment * 0.75, 1);
+  const end = Math.min(start + segment, 1);
+  const opacity = useTransform(progress, [start, fadeIn, fadeOut, end], [0.25, 1, 1, 0.25]);
   const y = useTransform(progress, [start, end], [40, -20]);
 
   return (

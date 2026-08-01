@@ -74,14 +74,14 @@ export function AnimatedBeam({
         <motion.linearGradient
           id={id}
           gradientUnits="userSpaceOnUse"
-          initial={{ x1: "0%", x2: "0%" }}
-          animate={{ x1: ["0%", "100%"], x2: ["0%", "95%"] }}
+          initial={{ x1: 0, x2: 0 }}
+          animate={{ x1: [0, size.w || 1], x2: [0, (size.w || 1) * 0.95] }}
           transition={{ duration, delay, repeat: Infinity, ease: "linear" }}
         >
           <stop stopColor={gradientStartColor} stopOpacity="0" />
-          <stop stopColor={gradientStartColor} />
-          <stop offset="32.5%" stopColor={gradientStopColor} />
-          <stop offset="100%" stopColor={gradientStopColor} stopOpacity="0" />
+          <stop offset="0.2" stopColor={gradientStartColor} />
+          <stop offset="0.325" stopColor={gradientStopColor} />
+          <stop offset="1" stopColor={gradientStopColor} stopOpacity="0" />
         </motion.linearGradient>
       </defs>
     </svg>
