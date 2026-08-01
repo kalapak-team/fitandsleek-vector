@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0b1210;
+  --foreground: #d7ebe3;
+  --mint: #3dff9a;
+  --ember: #ff6b3d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-body), sans-serif;
+}
+
+::selection {
+  background: rgba(61, 255, 154, 0.35);
+  color: #0b1210;
+}
+
+.fs-container {
+  @apply mx-auto w-full max-w-6xl px-5 md:px-8;
+}
+
+.fs-btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm bg-mint px-5 py-3 text-sm font-semibold tracking-wide text-ink transition hover:brightness-110;
+}
+
+.fs-btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm border border-mist/20 px-5 py-3 text-sm font-medium text-mist transition hover:border-mint/50 hover:text-mint;
+}
+
+.fs-panel {
+  @apply border border-mist/10 bg-graphite/80 backdrop-blur;
+}
+
+.fs-input {
+  @apply w-full rounded-sm border border-mist/15 bg-ink/60 px-3 py-2.5 text-sm text-mist outline-none transition placeholder:text-mist/35 focus:border-mint/50;
+}
+
+.fs-label {
+  @apply mb-1.5 block text-xs uppercase tracking-[0.16em] text-mist/50;
+}

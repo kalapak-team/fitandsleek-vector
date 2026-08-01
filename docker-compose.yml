@@ -1,0 +1,73 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: fitandsleek-db
+    environment:
+      POSTGRES_USER: fitandsleek
+      POSTGRES_PASSWORD: fitandsleek
+      POSTGRES_DB: fitandsleek_vector
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fitandsleek -d fitandsleek_vector"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4:8.14
+    container_name: fitandsleek-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@fitandsleek.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./docker/pgadmin/servers.json:/pgadmin4/servers.json:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  api:
+    build: ./backend
+    container_name: fitandsleek-api
+    ports:
+      - "6333:6333"
+    environment:
+      DATABASE_URL: postgresql+psycopg2://fitandsleek:fitandsleek@db:5432/fitandsleek_vector
+      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000,http://localhost:3002,http://127.0.0.1:3002
+      UPLOAD_DIR: uploads
+      DATA_DIR: data
+      AUTH_REQUIRED: "true"
+      JWT_SECRET: fitandsleek-vector-docker-secret
+    volumes:
+      - ./backend/uploads:/app/uploads
+      - ./backend/data:/app/data
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:6333
+    container_name: fitandsleek-web
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:6333
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  pgadmin_data:
