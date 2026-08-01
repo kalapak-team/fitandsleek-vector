@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --background: #0b1210;
-  --foreground: #d7ebe3;
-  --mint: #3dff9a;
-  --ember: #ff6b3d;
+  --background: #000000;
+  --foreground: #ededed;
+  --muted: #8a8a8a;
+  --line: rgba(255, 255, 255, 0.1);
 }
 
 html {
@@ -16,12 +16,11 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-body), sans-serif;
 }
 
 ::selection {
-  background: rgba(61, 255, 154, 0.35);
-  color: #0b1210;
+  background: rgba(255, 255, 255, 0.2);
+  color: #000;
 }
 
 .fs-container {
@@ -29,23 +28,23 @@ body {
 }
 
 .fs-btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-sm bg-mint px-5 py-3 text-sm font-semibold tracking-wide text-ink transition hover:brightness-110;
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium tracking-tight text-black transition hover:bg-white/90;
 }
 
 .fs-btn-ghost {
-  @apply inline-flex items-center justify-center gap-2 rounded-sm border border-mist/20 px-5 py-3 text-sm font-medium text-mist transition hover:border-mint/50 hover:text-mint;
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-transparent px-5 py-2.5 text-sm font-medium tracking-tight text-mist transition hover:border-white/35 hover:bg-white/[0.04];
 }
 
 .fs-panel {
-  @apply border border-mist/10 bg-graphite/80 backdrop-blur;
+  @apply border border-white/10 bg-white/[0.03] backdrop-blur;
 }
 
 .fs-input {
-  @apply w-full rounded-sm border border-mist/15 bg-ink/60 px-3 py-2.5 text-sm text-mist outline-none transition placeholder:text-mist/35 focus:border-mint/50;
+  @apply w-full rounded-lg border border-white/15 bg-black px-3 py-2.5 text-sm text-mist outline-none transition placeholder:text-white/30 focus:border-white/40;
 }
 
 .fs-label {
-  @apply mb-1.5 block text-xs uppercase tracking-[0.16em] text-mist/50;
+  @apply mb-1.5 block text-xs uppercase tracking-[0.16em] text-white/40;
 }
 
 html.lenis,

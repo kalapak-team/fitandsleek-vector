@@ -24,17 +24,17 @@ export function SpotlightCard({ title, body, className }: SpotlightCardProps) {
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={cn("relative overflow-hidden border border-mist/10 bg-graphite/60 p-6", className)}
+      className={cn("relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-7", className)}
     >
       <div
         className="pointer-events-none absolute -inset-px transition-opacity duration-300"
         style={{
           opacity: hover ? 1 : 0,
-          background: `radial-gradient(420px circle at ${pos.x}px ${pos.y}px, rgba(61,255,154,0.18), transparent 40%)`,
+          background: `radial-gradient(420px circle at ${pos.x}px ${pos.y}px, rgba(255,255,255,0.12), transparent 40%)`,
         }}
       />
-      <h3 className="relative font-display text-xl font-semibold text-mist">{title}</h3>
-      <p className="relative mt-3 text-sm leading-relaxed text-mist/55">{body}</p>
+      <h3 className="relative text-lg font-semibold tracking-tight text-white">{title}</h3>
+      <p className="relative mt-3 text-sm leading-relaxed text-white/45">{body}</p>
     </div>
   );
 }
@@ -45,7 +45,7 @@ export function SpotlightGrid({
   items: Array<{ title: string; body: string }>;
 }) {
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
         <SpotlightCard key={item.title} title={item.title} body={item.body} />
       ))}

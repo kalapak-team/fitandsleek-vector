@@ -24,18 +24,18 @@ export function StickyScrollStory() {
   const indicator = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div ref={ref} className="relative" style={{ height: `${panels.length * 90}vh` }}>
-      <div className="sticky top-0 flex min-h-screen items-center overflow-hidden">
+    <div ref={ref} className="relative border-t border-white/10" style={{ height: `${panels.length * 90}vh` }}>
+      <div className="sticky top-0 flex min-h-screen items-center overflow-hidden bg-black">
         <div className="fs-container grid w-full gap-10 md:grid-cols-[1fr_1.2fr]">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-mint/70">Sticky scroll</p>
-            <h2 className="mt-4 font-display text-4xl font-bold text-mist md:text-6xl">
+            <p className="text-[13px] text-white/40">Pipeline</p>
+            <h2 className="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-white">
               From image
               <br />
               to nearest match
             </h2>
-            <div className="mt-8 h-1 w-40 overflow-hidden bg-mist/10">
-              <motion.div className="h-full bg-mint" style={{ width: indicator }} />
+            <div className="mt-8 h-px w-40 overflow-hidden bg-white/10">
+              <motion.div className="h-full bg-white" style={{ width: indicator }} />
             </div>
           </div>
           <div className="space-y-24 py-24">
@@ -62,7 +62,6 @@ function StickyPanel({
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
   total: number;
 }) {
-  // Input stops must stay in [0, 1] — WAAPI throws if Framer maps offsets outside that range.
   const segment = 1 / total;
   const start = index * segment;
   const fadeIn = Math.min(start + segment * 0.2, 1);
@@ -72,10 +71,10 @@ function StickyPanel({
   const y = useTransform(progress, [start, end], [40, -20]);
 
   return (
-    <motion.div style={{ opacity, y }} className="border-l border-mint/30 pl-6">
-      <p className="font-mono text-xs text-mint/70">0{index + 1}</p>
-      <h3 className="mt-2 font-display text-3xl font-bold text-mist">{title}</h3>
-      <p className="mt-3 max-w-md text-mist/60">{body}</p>
+    <motion.div style={{ opacity, y }} className="border-l border-white/15 pl-6">
+      <p className="font-mono text-[11px] text-white/35">0{index + 1}</p>
+      <h3 className="mt-2 text-3xl font-semibold tracking-tight text-white">{title}</h3>
+      <p className="mt-3 max-w-md text-white/45">{body}</p>
     </motion.div>
   );
 }

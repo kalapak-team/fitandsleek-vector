@@ -24,9 +24,9 @@ export function AnimatedBeam({
   fromRef,
   toRef,
   curvature = 60,
-  pathColor = "rgba(215,235,227,0.2)",
-  gradientStartColor = "#3dff9a",
-  gradientStopColor = "#ff6b3d",
+  pathColor = "rgba(255,255,255,0.12)",
+  gradientStartColor = "#ffffff",
+  gradientStopColor = "#a3a3a3",
   pathWidth = 2,
   pathOpacity = 0.35,
   duration = 5,
@@ -90,9 +90,9 @@ export function AnimatedBeam({
 
 const Node = forwardRef<HTMLDivElement, { label: string; sub: string }>(function Node({ label, sub }, ref) {
   return (
-    <div ref={ref} className="z-10 w-44 border border-mist/15 bg-ink/80 px-4 py-5 text-center backdrop-blur">
-      <p className="font-display text-lg font-semibold text-mist">{label}</p>
-      <p className="mt-1 text-xs text-mist/45">{sub}</p>
+    <div ref={ref} className="z-10 w-44 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-5 text-center backdrop-blur">
+      <p className="text-lg font-semibold tracking-tight text-white">{label}</p>
+      <p className="mt-1 text-xs text-white/40">{sub}</p>
     </div>
   );
 });
@@ -117,8 +117,8 @@ export function ArchitectureBeam() {
         fromRef={hfRef}
         toRef={neonRef}
         delay={0.8}
-        gradientStartColor="#ff6b3d"
-        gradientStopColor="#3dff9a"
+        gradientStartColor="#a3a3a3"
+        gradientStopColor="#ffffff"
       />
     </div>
   );
