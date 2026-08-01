@@ -12,6 +12,28 @@ export default function CollectionDetailPage() {
   const [snapshots, setSnapshots] = useState<Array<Record<string, unknown>>>([]);
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const [collection, scroll, snaps] = await Promise.all([
+          api.getCollection(name),
+          api.scroll(name, 50),
+          api.listSnapshots(name),
+        ]);
+        if (cancelled) return;
+        setInfo(collection.result);
+        setPoints(scroll.result.points);
+        setSnapshots(snaps.result);
+      } catch (e) {
+        if (!cancelled) setError((e as Error).message);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [name]);
+
   async function load() {
     const [collection, scroll, snaps] = await Promise.all([
       api.getCollection(name),
@@ -22,11 +44,6 @@ export default function CollectionDetailPage() {
     setPoints(scroll.result.points);
     setSnapshots(snaps.result);
   }
-
-  useEffect(() => {
-    load().catch((e: Error) => setError(e.message));
-  }, [name]);
-
   async function makeSnapshot() {
     await api.createSnapshot(name);
     await load();
