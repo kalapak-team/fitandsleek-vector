@@ -14,7 +14,23 @@ settings = get_settings()
 
 
 def _ensure_schema() -> None:
-    Base.metadata.create_all(bind=engine)
+    if settings.is_local_database:
+        print(
+            "WARNING: DATABASE_URL points to localhost. "
+            "On Hugging Face, set Secret DATABASE_URL to your Neon connection string."
+        )
+
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as exc:
+        raise RuntimeError(
+            "Failed to connect to PostgreSQL. "
+            "Set Hugging Face Space Secret `DATABASE_URL` to your Neon URL "
+            "(include sslmode=require). "
+            f"Current host looks local={settings.is_local_database}. "
+            f"Original error: {exc}"
+        ) from exc
+
     inspector = inspect(engine)
     tables = inspector.get_table_names()
 

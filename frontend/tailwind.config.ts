@@ -41,6 +41,22 @@ const config: Config = {
           "50%": { transform: "translateY(-12px)" },
           "100%": { transform: "translateY(0px)" },
         },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
+        "marquee-reverse": {
+          from: { transform: "translateX(calc(-100% - var(--gap)))" },
+          to: { transform: "translateX(0)" },
+        },
+        "marquee-vertical-reverse": {
+          from: { transform: "translateY(calc(-100% - var(--gap)))" },
+          to: { transform: "translateY(0)" },
+        },
       },
       animation: {
         rise: "rise 0.8s ease-out both",
@@ -48,6 +64,10 @@ const config: Config = {
         "rise-delay-2": "rise 0.8s ease-out 0.3s both",
         "pulse-line": "pulseLine 2.4s ease-in-out infinite",
         drift: "drift 6s ease-in-out infinite",
+        marquee: "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+        "marquee-reverse": "marquee-reverse var(--duration) linear infinite",
+        "marquee-vertical-reverse": "marquee-vertical-reverse var(--duration) linear infinite",
       },
     },
   },

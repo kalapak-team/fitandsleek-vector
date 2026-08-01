@@ -1,135 +1,165 @@
+"use client";
+
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { StackingCards } from "@/components/motion/StackingCards";
+import { StickyScrollStory } from "@/components/motion/StickyScroll";
+import { HorizontalScrollGallery } from "@/components/motion/HorizontalScroll";
+import { ScrollText } from "@/components/motion/ScrollText";
+import { InfinityBrand } from "@/components/motion/InfinityBrand";
+import { Marquee } from "@/components/motion/Marquee";
+import { SpotlightGrid } from "@/components/motion/SpotlightCards";
+import { ArchitectureBeam } from "@/components/motion/AnimatedBeam";
 
-const features = [
+const stackCards = [
   {
     title: "Collections",
-    body: "Create, inspect, and delete collections with Cosine, Euclid, or Dot distance — same mental model as Qdrant.",
+    body: "Create distance-aware collections with Cosine, Euclid, or Dot — the same mental model as Qdrant.",
+    accent: "rgba(61,255,154,0.28)",
   },
   {
-    title: "Points & Payloads",
-    body: "Upsert vectors with rich JSON payloads, scroll pages of points, count, and delete by id or filter.",
+    title: "Image search",
+    body: "Upload a product photo. FitandSleek Vector embeds and ranks nearest catalog matches in milliseconds.",
+    accent: "rgba(255,107,61,0.25)",
   },
   {
-    title: "Similarity Search",
-    body: "Nearest-neighbor search with score thresholds, payload filters, and optional vector return.",
+    title: "API keys",
+    body: "Register like Qdrant Cloud. Receive an API key once. Protect search and admin routes by role.",
+    accent: "rgba(61,255,154,0.2)",
   },
   {
-    title: "Image Pipeline",
-    body: "Upload product images, auto-embed them, and search visually across your FitandSleek catalog.",
-  },
-  {
-    title: "Recommend API",
-    body: "Positive / negative examples to recommend similar items without crafting a query vector by hand.",
-  },
-  {
-    title: "Snapshots",
-    body: "Create collection snapshots for backup checkpoints — console-ready and API-compatible.",
+    title: "Owned stack",
+    body: "Next.js · FastAPI · Neon PostgreSQL. Deployed on Vercel + Hugging Face — built by your team.",
+    accent: "rgba(255,107,61,0.2)",
   },
 ];
 
-const steps = [
-  "Create a collection with vector size + distance metric",
-  "Upsert points (raw vectors or image uploads)",
-  "Search by vector or by image and rank by similarity",
+const spotlights = [
+  { title: "Points & payloads", body: "Upsert vectors with rich JSON metadata — title, category, price, filename." },
+  { title: "Filters", body: "must / should / must_not with match and range conditions for precise retrieval." },
+  { title: "Recommend", body: "Positive and negative examples steer results without hand-crafted query vectors." },
+  { title: "Snapshots", body: "Checkpoint collections for demos, backups, and classroom checkpoints." },
+  { title: "Scroll & count", body: "Page through points and count with filters — console and API ready." },
+  { title: "Swagger docs", body: "Explore every Qdrant-shaped endpoint live at /docs on your Space." },
+];
+
+const quotes = [
+  { q: "Own the vector engine — not just a hosted black box.", a: "FitandSleek Team" },
+  { q: "Qdrant-compatible API. Original FitandSleek implementation.", a: "Year 4 Project" },
+  { q: "Image in. Similar products out. Built for athletic retail.", a: "Product Search" },
 ];
 
 export default function HomePage() {
   return (
-    <main>
-      <section className="relative min-h-screen overflow-hidden bg-hero-glow">
-        <div
-          className="pointer-events-none absolute inset-0 bg-grid-fade opacity-40"
-          style={{ backgroundSize: "48px 48px" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink" />
-        <SiteHeader />
+    <SmoothScroll>
+      <main className="overflow-x-hidden bg-ink">
+        {/* HERO — Adobe / x.ai cinematic energy, brand first */}
+        <section className="relative min-h-screen overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_60%_0%,rgba(61,255,154,0.2),transparent_55%),radial-gradient(ellipse_60%_50%_at_10%_90%,rgba(255,107,61,0.14),transparent_50%),linear-gradient(180deg,#0b1210_0%,#0e1714_50%,#0b1210_100%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-grid-fade opacity-30" style={{ backgroundSize: "56px 56px" }} />
+          <div className="pointer-events-none absolute -left-24 top-1/3 h-[420px] w-[420px] rounded-full bg-mint/10 blur-[100px]" />
+          <div className="pointer-events-none absolute -right-16 bottom-10 h-[380px] w-[380px] rounded-full bg-ember/10 blur-[110px]" />
+          <SiteHeader />
 
-        <div className="fs-container relative flex min-h-screen flex-col justify-end pb-16 pt-28 md:justify-center md:pb-24 md:pt-32">
-          <p className="animate-rise font-mono text-xs uppercase tracking-[0.28em] text-mint/80">Vector Database</p>
-          <h1 className="animate-rise-delay mt-4 max-w-4xl font-display text-5xl font-extrabold leading-[0.95] tracking-tight text-mist md:text-7xl lg:text-8xl">
-            FitandSleek
-            <br />
-            <span className="text-mint">Vector</span>
-          </h1>
-          <p className="animate-rise-delay-2 mt-6 max-w-xl text-base text-mist/70 md:text-lg">
-            Your own Qdrant-style engine for fitness product image search — collections, payloads, filters, and
-            similarity ranking built by your team.
-          </p>
-          <div className="animate-rise-delay-2 mt-10 flex flex-wrap gap-3">
-            <Link href="/console" className="fs-btn">
-              Launch Console
-            </Link>
-            <Link href="/docs" className="fs-btn-ghost">
-              Explore API
-            </Link>
-          </div>
-
-          <div className="animate-drift pointer-events-none absolute right-8 top-1/3 hidden h-64 w-64 rounded-full border border-mint/25 md:block">
-            <div className="absolute inset-6 rounded-full border border-mint/20" />
-            <div className="absolute inset-14 animate-pulse-line rounded-full border border-ember/40" />
-            <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-mint shadow-[0_0_30px_#3dff9a]" />
-          </div>
-        </div>
-      </section>
-
-      <section id="features" className="border-t border-mist/10 py-20">
-        <div className="fs-container">
-          <h2 className="font-display text-3xl font-bold text-mist md:text-4xl">Built like Qdrant. Owned by you.</h2>
-          <p className="mt-3 max-w-2xl text-mist/60">
-            Core vector-database operations mirror Qdrant&apos;s REST shape so your team learns industry patterns while
-            shipping an original FitandSleek system.
-          </p>
-          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {features.map((f) => (
-              <article key={f.title} className="border-t border-mint/30 pt-5">
-                <h3 className="font-display text-xl font-semibold text-mist">{f.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-mist/55">{f.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="how" className="relative overflow-hidden py-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-moss/20 via-transparent to-ember/10" />
-        <div className="fs-container relative">
-          <h2 className="font-display text-3xl font-bold text-mist md:text-4xl">How it works</h2>
-          <ol className="mt-10 space-y-6">
-            {steps.map((step, i) => (
-              <li key={step} className="flex items-start gap-5">
-                <span className="font-mono text-sm text-mint">0{i + 1}</span>
-                <p className="text-lg text-mist/80">{step}</p>
-              </li>
-            ))}
-          </ol>
-          <div className="mt-12">
-            <Link href="/console/images" className="fs-btn">
-              Try Image Search
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-mist/10 py-20">
-        <div className="fs-container flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 className="font-display text-3xl font-bold text-mist md:text-4xl">Stack</h2>
-            <p className="mt-3 max-w-xl text-mist/60">
-              Next.js frontend · Python FastAPI engine · PostgreSQL persistence · custom similarity index
+          <div className="fs-container relative flex min-h-screen flex-col justify-end pb-20 pt-28 md:justify-center md:pb-28">
+            <p className="animate-rise font-mono text-xs uppercase tracking-[0.3em] text-mint/80">Vector database</p>
+            <h1 className="animate-rise-delay mt-5 max-w-5xl font-display text-6xl font-extrabold leading-[0.9] tracking-tight text-mist md:text-8xl lg:text-[7.5rem]">
+              FitandSleek
+              <br />
+              <span className="bg-gradient-to-r from-mint via-mist to-ember bg-clip-text text-transparent">Vector</span>
+            </h1>
+            <p className="animate-rise-delay-2 mt-7 max-w-xl text-lg text-mist/65 md:text-xl">
+              Cinematic product search infrastructure — Qdrant-shaped, team-owned, image-native.
             </p>
+            <div className="animate-rise-delay-2 mt-10 flex flex-wrap gap-3">
+              <Link href="/register" className="fs-btn">
+                Get API Key
+              </Link>
+              <Link href="/console" className="fs-btn-ghost">
+                Launch Console
+              </Link>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-3 font-mono text-xs uppercase tracking-[0.16em] text-mist/50">
-            <span>React</span>
-            <span>Next.js</span>
-            <span>FastAPI</span>
-            <span>PostgreSQL</span>
-            <span>NumPy</span>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <SiteFooter />
-    </main>
+        <ScrollText className="border-y border-mist/10 bg-graphite/30 py-8">FitandSleek Vector · Image Search · </ScrollText>
+
+        <InfinityBrand />
+
+        {/* Stacking cards */}
+        <section className="relative bg-ink">
+          <div className="fs-container pt-24">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-mint/70">Stacking cards</p>
+            <h2 className="mt-3 max-w-3xl font-display text-4xl font-bold text-mist md:text-6xl">
+              Capabilities that stack as you scroll
+            </h2>
+          </div>
+          <StackingCards items={stackCards} />
+        </section>
+
+        {/* Spotlight */}
+        <section className="border-t border-mist/10 py-24">
+          <div className="fs-container">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-mint/70">Spotlight cards</p>
+            <h2 className="mt-3 font-display text-4xl font-bold text-mist md:text-5xl">Operator surface</h2>
+            <p className="mt-3 max-w-2xl text-mist/55">Hover to reveal depth — console primitives for collections, filters, and recovery.</p>
+            <div className="mt-12">
+              <SpotlightGrid items={spotlights} />
+            </div>
+          </div>
+        </section>
+
+        <StickyScrollStory />
+
+        <HorizontalScrollGallery />
+
+        {/* Animated beam architecture */}
+        <section className="border-t border-mist/10 py-24">
+          <div className="fs-container">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-mint/70">Animated beam</p>
+            <h2 className="mt-3 text-center font-display text-4xl font-bold text-mist md:text-5xl">Live deployment graph</h2>
+            <p className="mx-auto mt-3 max-w-xl text-center text-mist/55">
+              Frontend on Vercel · API on Hugging Face · Database on Neon
+            </p>
+            <div className="mt-14">
+              <ArchitectureBeam />
+            </div>
+          </div>
+        </section>
+
+        {/* Marquee quotes */}
+        <section className="border-t border-mist/10 py-16">
+          <p className="mb-8 text-center font-mono text-xs uppercase tracking-[0.22em] text-mist/40">Marquee</p>
+          <Marquee pauseOnHover className="[--duration:45s]">
+            {quotes.map((item) => (
+              <figure key={item.q} className="mx-3 w-[320px] border border-mist/10 bg-graphite/50 p-6 md:w-[420px]">
+                <blockquote className="text-lg text-mist/80">&ldquo;{item.q}&rdquo;</blockquote>
+                <figcaption className="mt-4 font-mono text-xs uppercase tracking-[0.16em] text-mint/60">{item.a}</figcaption>
+              </figure>
+            ))}
+          </Marquee>
+        </section>
+
+        {/* CTA */}
+        <section className="relative overflow-hidden py-28">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(61,255,154,0.16),transparent_55%)]" />
+          <div className="fs-container relative text-center">
+            <h2 className="font-display text-4xl font-bold text-mist md:text-6xl">Create account. Get your key.</h2>
+            <p className="mx-auto mt-4 max-w-xl text-mist/60">Qdrant-style onboarding — API key shown once, then power your FitandSleek website search.</p>
+            <div className="mt-10 flex flex-wrap justify-center gap-3">
+              <Link href="/register" className="fs-btn">
+                Sign up
+              </Link>
+              <Link href="https://kalapak-fitandsleek-vector.hf.space/docs" className="fs-btn-ghost" target="_blank">
+                Open API Docs
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <SiteFooter />
+      </main>
+    </SmoothScroll>
   );
 }

@@ -1,16 +1,16 @@
 import Link from "next/link";
 
 const links = [
-  { href: "/#features", label: "Features" },
-  { href: "/#how", label: "How it works" },
+  { href: "/#product", label: "Product" },
+  { href: "/#story", label: "Pipeline" },
+  { href: "/#integration", label: "Integrate" },
   { href: "/docs", label: "API" },
-  { href: "/register", label: "Sign up" },
   { href: "/console", label: "Console" },
 ];
 
 export function SiteHeader() {
   return (
-    <header className="absolute inset-x-0 top-0 z-30">
+    <header className="absolute inset-x-0 top-0 z-40">
       <div className="fs-container flex items-center justify-between py-5">
         <Link href="/" className="font-display text-xl font-bold tracking-tight text-mist md:text-2xl">
           FitandSleek <span className="text-mint">Vector</span>
