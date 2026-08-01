@@ -1,8 +1,7 @@
 import type { NextConfig } from "next";
 
-// `standalone` is only for Docker/HF self-hosting — Vercel breaks with it.
 const nextConfig: NextConfig = {
-  ...(process.env.DOCKER_BUILD === "1" ? { output: "standalone" as const } : {}),
+  // Do not set `output: "standalone"` — it breaks Vercel build traces.
 };
 
 export default nextConfig;
