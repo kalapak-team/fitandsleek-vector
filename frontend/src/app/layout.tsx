@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   title: "FitandSleek Vector",
   description:
     "Frontier vector search for image similarity. Qdrant-compatible API. Owned by your team.",
+  icons: {
+    icon: [{ url: "/logo-mark.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/logo-mark.svg" }],
+  },
 };
 
 const themeInitScript = `

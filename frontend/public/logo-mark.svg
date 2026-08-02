@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" fill="none" role="img" aria-label="FITANDSLEEK VECTOR mark">
+  <path d="M56 6 L106 56 L56 106 L6 56 Z" stroke="#121412" stroke-width="6.5" stroke-linejoin="round" fill="none"/>
+  <path d="M56 30 L82 56 L56 82 L30 56 Z" fill="#0f7a4f"/>
+  <path d="M26 56 H86" stroke="#f3f1ec" stroke-width="5.5" stroke-linecap="round"/>
+  <path d="M56 26 V86" stroke="#f3f1ec" stroke-width="5.5" stroke-linecap="round"/>
+  <circle cx="56" cy="56" r="7" fill="#121412"/>
+</svg>

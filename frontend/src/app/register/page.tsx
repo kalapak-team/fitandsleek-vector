@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 import { saveSession } from "@/lib/auth";
+import { BrandLogo } from "@/components/BrandLogo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function RegisterPage() {
@@ -42,6 +43,9 @@ export default function RegisterPage() {
       </div>
       <div className="fs-container flex min-h-screen items-center justify-center py-16">
         <div className="fs-panel w-full max-w-lg p-8">
+          <Link href="/" className="mb-6 inline-flex" aria-label="FITANDSLEEK VECTOR home">
+            <BrandLogo className="h-7" />
+          </Link>
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-mint/70">Qdrant-style account</p>
           <h1 className="mt-2 font-display text-3xl font-bold text-mist">Create account</h1>
           <p className="mt-2 text-sm text-mist/55">Register and receive your API key immediately — like Qdrant Cloud.</p>

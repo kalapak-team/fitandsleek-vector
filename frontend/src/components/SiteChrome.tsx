@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/BrandLogo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const links = [
@@ -13,8 +14,8 @@ export function SiteHeader() {
   return (
     <header className="absolute inset-x-0 top-0 z-40">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 md:px-6">
-        <Link href="/" className="text-[15px] font-extrabold tracking-tight text-mist">
-          FITANDSLEEK <span className="text-mint">VECTOR</span>
+        <Link href="/" className="inline-flex items-center" aria-label="FITANDSLEEK VECTOR home">
+          <BrandLogo className="h-10 md:h-12" />
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {links.map((l) => (
@@ -42,10 +43,8 @@ export function SiteFooter() {
     <footer className="border-t border-line py-10">
       <div className="fs-container grid gap-8 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
-          <p className="text-sm font-extrabold tracking-tight text-mist">
-            FITANDSLEEK <span className="text-mint">VECTOR</span>
-          </p>
-          <p className="mt-2 max-w-xs text-sm leading-relaxed text-mist/45">
+          <BrandLogo className="h-12 md:h-14" />
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-mist/45">
             Custom vector database for Fit &amp; Sleek image similarity. Qdrant-compatible. Team-owned.
           </p>
         </div>

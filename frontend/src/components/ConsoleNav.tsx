@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AuthUser, clearSession, getUser } from "@/lib/auth";
+import { BrandLogo } from "@/components/BrandLogo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
 
@@ -73,11 +74,9 @@ export function ConsoleNav({ open, onClose }: ConsoleNavProps) {
         )}
       >
         <div className="flex items-center justify-between gap-2 border-b border-line px-4 py-4">
-          <Link href="/" className="min-w-0" onClick={onClose}>
-            <p className="truncate text-[13px] font-extrabold tracking-tight text-mist">
-              FITANDSLEEK <span className="text-mint">VECTOR</span>
-            </p>
-            <p className="text-[11px] text-mist/40">Operations console</p>
+          <Link href="/" className="min-w-0" onClick={onClose} aria-label="FITANDSLEEK VECTOR home">
+            <BrandLogo className="h-6 w-auto max-w-[11.5rem]" />
+            <p className="mt-1 text-[11px] text-mist/40">Operations console</p>
           </Link>
           <div className="flex items-center gap-1">
             <ThemeToggle className="shrink-0" />
@@ -169,8 +168,8 @@ export function ConsoleTopBar({ onMenu }: { onMenu: () => void }) {
       >
         <IconMenu />
       </button>
-      <Link href="/console" className="text-[13px] font-extrabold tracking-tight text-mist">
-        FITANDSLEEK <span className="text-mint">VECTOR</span>
+      <Link href="/console" className="inline-flex items-center" aria-label="FITANDSLEEK VECTOR console">
+        <BrandLogo className="h-5" />
       </Link>
       <ThemeToggle />
     </header>
