@@ -167,11 +167,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="product" className="relative bg-ink">
-          <div className="fs-container pt-10 md:pt-12">
+        <section id="product" className="relative bg-ink pb-4">
+          <div className="fs-container pt-8 pb-3 md:pt-10">
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-mint">Capabilities</p>
             <h2 className="mt-1 text-3xl font-bold tracking-tight text-mist md:text-4xl">Stack as you scroll</h2>
-            <p className="mt-2 max-w-xl text-sm text-mist/50">Scroll to explore FitandSleek Vector — denser cards, less empty space.</p>
           </div>
           <StackingCards items={stackCards} />
         </section>
