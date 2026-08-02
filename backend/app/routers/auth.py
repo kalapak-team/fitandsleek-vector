@@ -22,7 +22,8 @@ class RegisterRequest(BaseModel):
     email: EmailStr
     password: str = Field(min_length=6, max_length=128)
     full_name: str = Field(default="", max_length=255)
-    role: Literal["admin", "customer"] = "customer"
+    # Public signup is customer-only. Admin cannot self-register.
+    role: Literal["customer"] = "customer"
 
 
 class LoginRequest(BaseModel):
@@ -58,15 +59,11 @@ def register(body: RegisterRequest, db: Session = Depends(get_db)):
     if existing:
         raise HTTPException(status_code=409, detail="Email already registered")
 
-    # First user becomes admin automatically (bootstrap)
-    user_count = db.query(User).count()
-    role = "admin" if user_count == 0 else body.role
-
     user = User(
         email=body.email.lower(),
         full_name=body.full_name or body.email.split("@")[0],
         password_hash=hash_password(body.password),
-        role=role,
+        role="customer",
     )
     db.add(user)
     db.commit()

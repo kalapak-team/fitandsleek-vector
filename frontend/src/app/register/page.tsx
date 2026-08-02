@@ -12,7 +12,6 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("customer");
   const [apiKey, setApiKey] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -22,7 +21,7 @@ export default function RegisterPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await api.register({ email, password, full_name: fullName, role });
+      const res = await api.register({ email, password, full_name: fullName, role: "customer" });
       saveSession({
         token: res.result.access_token,
         user: res.result.user,
@@ -68,14 +67,10 @@ export default function RegisterPage() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div>
-                <label className="fs-label">Role</label>
-                <select className="fs-input" value={role} onChange={(e) => setRole(e.target.value)}>
-                  <option value="customer">Customer</option>
-                  <option value="admin">Admin</option>
-                </select>
-                <p className="mt-1 text-xs text-mist/40">First account is always promoted to Admin.</p>
-              </div>
+              <p className="text-xs text-mist/45">
+                New accounts are registered as <span className="font-medium text-mist">Customer</span> only. Admin
+                cannot self-register.
+              </p>
               {error && <p className="text-sm text-ember">{error}</p>}
               <button className="fs-btn w-full" disabled={loading}>
                 {loading ? "Creating…" : "Create account & get API key"}
