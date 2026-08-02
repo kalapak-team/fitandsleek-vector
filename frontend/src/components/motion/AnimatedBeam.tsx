@@ -24,9 +24,9 @@ export function AnimatedBeam({
   fromRef,
   toRef,
   curvature = 60,
-  pathColor = "color-mix(in srgb, var(--mist) 20%, transparent)",
-  gradientStartColor = "var(--mist)",
-  gradientStopColor = "var(--muted)",
+  pathColor = "color-mix(in srgb, var(--mist) 18%, transparent)",
+  gradientStartColor = "var(--mint)",
+  gradientStopColor = "var(--ember)",
   pathWidth = 2,
   pathOpacity = 0.35,
   duration = 5,
@@ -117,8 +117,8 @@ export function ArchitectureBeam() {
         fromRef={hfRef}
         toRef={neonRef}
         delay={0.8}
-        gradientStartColor="var(--muted)"
-        gradientStopColor="var(--mist)"
+        gradientStartColor="var(--ember)"
+        gradientStopColor="var(--mint)"
       />
     </div>
   );

@@ -50,7 +50,7 @@ export function ScrollText({
 
   return (
     <div className={cn("overflow-hidden whitespace-nowrap", className)}>
-      <motion.div className="flex w-max gap-8 text-5xl font-semibold uppercase tracking-tight text-mist/[0.08] md:text-7xl" style={{ x }}>
+      <motion.div className="flex w-max gap-6 text-3xl font-extrabold uppercase tracking-tight text-mist/[0.12] md:gap-8 md:text-5xl" style={{ x }}>
         {Array.from({ length: 8 }).map((_, i) => (
           <span key={i}>{children}</span>
         ))}

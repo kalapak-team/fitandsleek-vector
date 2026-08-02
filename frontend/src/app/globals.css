@@ -2,53 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Light (default for no-flash when script adds .dark) */
+/* Fit & Sleek portfolio energy — warm, dense, brand mint */
 :root,
 html.light {
-  --background: #f4f4f5;
-  --foreground: #0a0a0a;
-  --ink: #f4f4f5;
+  --background: #f3f1ec;
+  --foreground: #121412;
+  --ink: #f3f1ec;
   --graphite: #ffffff;
-  --mist: #0a0a0a;
-  --mint: #0a0a0a;
-  --ember: #c2410c;
-  --muted: #71717a;
-  --line: rgba(0, 0, 0, 0.1);
-  --panel: rgba(0, 0, 0, 0.03);
-  --panel-strong: rgba(0, 0, 0, 0.05);
-  --btn-bg: #0a0a0a;
+  --mist: #121412;
+  --mint: #0f7a4f;
+  --ember: #d4552a;
+  --muted: #5c635e;
+  --line: rgba(18, 20, 18, 0.12);
+  --panel: rgba(18, 20, 18, 0.04);
+  --panel-strong: rgba(18, 20, 18, 0.07);
+  --btn-bg: #121412;
   --btn-fg: #ffffff;
-  --btn-bg-hover: #27272a;
-  --ghost-hover: rgba(0, 0, 0, 0.04);
+  --btn-bg-hover: #0f7a4f;
+  --ghost-hover: rgba(18, 20, 18, 0.05);
   --input-bg: #ffffff;
-  --star-rgb: 0, 0, 0;
-  --glow: rgba(0, 0, 0, 0.06);
-  --selection-bg: rgba(0, 0, 0, 0.14);
+  --star-rgb: 15, 122, 79;
+  --glow: rgba(15, 122, 79, 0.1);
+  --selection-bg: rgba(15, 122, 79, 0.25);
   --selection-fg: #fff;
   color-scheme: light;
 }
 
 html.dark {
-  --background: #000000;
-  --foreground: #ededed;
-  --ink: #000000;
-  --graphite: #0a0a0a;
-  --mist: #ededed;
-  --mint: #ffffff;
-  --ember: #fb923c;
-  --muted: #8a8a8a;
-  --line: rgba(255, 255, 255, 0.1);
-  --panel: rgba(255, 255, 255, 0.03);
-  --panel-strong: rgba(255, 255, 255, 0.06);
-  --btn-bg: #ffffff;
-  --btn-fg: #000000;
-  --btn-bg-hover: #f4f4f5;
-  --ghost-hover: rgba(255, 255, 255, 0.04);
-  --input-bg: #000000;
-  --star-rgb: 255, 255, 255;
-  --glow: rgba(255, 255, 255, 0.045);
-  --selection-bg: rgba(255, 255, 255, 0.2);
-  --selection-fg: #000;
+  --background: #0b1210;
+  --foreground: #e8efe9;
+  --ink: #0b1210;
+  --graphite: #121a17;
+  --mist: #e8efe9;
+  --mint: #3dff9a;
+  --ember: #ff6b3d;
+  --muted: #8a9a90;
+  --line: rgba(232, 239, 233, 0.12);
+  --panel: rgba(232, 239, 233, 0.04);
+  --panel-strong: rgba(232, 239, 233, 0.08);
+  --btn-bg: #3dff9a;
+  --btn-fg: #0b1210;
+  --btn-bg-hover: #6affb4;
+  --ghost-hover: rgba(232, 239, 233, 0.06);
+  --input-bg: #0b1210;
+  --star-rgb: 61, 255, 154;
+  --glow: rgba(61, 255, 154, 0.12);
+  --selection-bg: rgba(61, 255, 154, 0.35);
+  --selection-fg: #0b1210;
   color-scheme: dark;
 }
 
@@ -67,11 +67,11 @@ body {
 }
 
 .fs-container {
-  @apply mx-auto w-full max-w-6xl px-5 md:px-8;
+  @apply mx-auto w-full max-w-6xl px-4 md:px-6;
 }
 
 .fs-btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium tracking-tight transition;
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold tracking-tight transition;
   background: var(--btn-bg);
   color: var(--btn-fg);
 }
@@ -81,13 +81,14 @@ body {
 }
 
 .fs-btn-ghost {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border bg-transparent px-5 py-2.5 text-sm font-medium tracking-tight text-mist transition;
+  @apply inline-flex items-center justify-center gap-2 rounded-md border bg-transparent px-5 py-2.5 text-sm font-semibold tracking-tight text-mist transition;
   border-color: var(--line);
 }
 
 .fs-btn-ghost:hover {
   background: var(--ghost-hover);
-  border-color: color-mix(in srgb, var(--mist) 35%, transparent);
+  border-color: color-mix(in srgb, var(--mint) 50%, transparent);
+  color: var(--mint);
 }
 
 .fs-panel {
@@ -97,7 +98,7 @@ body {
 }
 
 .fs-input {
-  @apply w-full rounded-lg border px-3 py-2.5 text-sm text-mist outline-none transition;
+  @apply w-full rounded-md border px-3 py-2.5 text-sm text-mist outline-none transition;
   border-color: var(--line);
   background: var(--input-bg);
 }
@@ -107,12 +108,12 @@ body {
 }
 
 .fs-input:focus {
-  border-color: color-mix(in srgb, var(--mist) 40%, transparent);
+  border-color: color-mix(in srgb, var(--mint) 55%, transparent);
 }
 
 .fs-label {
-  @apply mb-1.5 block text-xs uppercase tracking-[0.16em];
-  color: color-mix(in srgb, var(--mist) 40%, transparent);
+  @apply mb-1.5 block text-xs uppercase tracking-[0.14em];
+  color: color-mix(in srgb, var(--mist) 45%, transparent);
 }
 
 html.lenis,
