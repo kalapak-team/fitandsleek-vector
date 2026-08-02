@@ -83,7 +83,17 @@ export function SiteFooter() {
       </div>
       <div className="fs-container mt-8 flex flex-col gap-1 border-t border-line pt-5 text-xs text-mist/35 md:flex-row md:justify-between">
         <span>© {new Date().getFullYear()} FitandSleek Vector</span>
-        <span>Year 4 · Original implementation</span>
+        <span>
+          Powered by{" "}
+          <Link
+            href="https://www.kalapak-team.space/"
+            className="font-medium text-mint hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Kalapak Code Team
+          </Link>
+        </span>
       </div>
     </footer>
   );
