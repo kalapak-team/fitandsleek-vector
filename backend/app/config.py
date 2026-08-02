@@ -11,6 +11,8 @@ def normalize_database_url(url: str) -> str:
         value = "postgresql://" + value[len("postgres://") :]
     if value.startswith("postgresql://") and "+psycopg2" not in value:
         value = "postgresql+psycopg2://" + value[len("postgresql://") :]
+    # Neon often appends channel_binding=require — psycopg2 can reject it.
+    value = value.replace("&channel_binding=require", "").replace("?channel_binding=require&", "?").replace("?channel_binding=require", "")
     if "sslmode=" not in value and ("neon.tech" in value or "neon." in value):
         sep = "&" if "?" in value else "?"
         value = f"{value}{sep}sslmode=require"
