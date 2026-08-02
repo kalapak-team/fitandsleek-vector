@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 import { saveSession } from "@/lib/auth";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -33,7 +34,10 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-ink bg-hero-glow">
+    <main className="relative min-h-screen bg-ink bg-hero-glow">
+      <div className="absolute right-5 top-5 z-10 md:right-8 md:top-8">
+        <ThemeToggle />
+      </div>
       <div className="fs-container flex min-h-screen items-center justify-center py-16">
         <div className="fs-panel w-full max-w-lg p-8">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-mint/70">Welcome back</p>

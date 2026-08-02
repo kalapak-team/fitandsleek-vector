@@ -47,19 +47,19 @@ function StackCard({
       <motion.article
         style={{ scale, opacity, top: `${index * 16}px` }}
         className={cn(
-          "relative w-full max-w-3xl overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0a] p-8 md:p-12",
-          "shadow-[0_40px_100px_rgba(0,0,0,0.65)]"
+          "relative w-full max-w-3xl overflow-hidden rounded-2xl border border-line bg-graphite p-8 md:p-12",
+          "shadow-[0_40px_100px_rgba(0,0,0,0.25)]"
         )}
       >
         <div
           className="pointer-events-none absolute inset-0"
           style={{
-            background: `radial-gradient(circle at 20% 0%, ${item.accent || "rgba(255,255,255,0.08)"}, transparent 55%)`,
+            background: `radial-gradient(circle at 20% 0%, ${item.accent || "color-mix(in srgb, var(--mist) 8%, transparent)"}, transparent 55%)`,
           }}
         />
-        <p className="relative font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">0{index + 1}</p>
-        <h3 className="relative mt-4 text-3xl font-semibold tracking-tight text-white md:text-5xl">{item.title}</h3>
-        <p className="relative mt-4 max-w-xl text-base leading-relaxed text-white/45 md:text-lg">{item.body}</p>
+        <p className="relative font-mono text-[11px] uppercase tracking-[0.22em] text-mist/35">0{index + 1}</p>
+        <h3 className="relative mt-4 text-3xl font-semibold tracking-tight text-mist md:text-5xl">{item.title}</h3>
+        <p className="relative mt-4 max-w-xl text-base leading-relaxed text-mist/45 md:text-lg">{item.body}</p>
       </motion.article>
     </div>
   );

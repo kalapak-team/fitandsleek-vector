@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,12 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#000000",
-        graphite: "#0a0a0a",
-        mist: "#ededed",
-        mint: "#ffffff",
-        moss: "#2a2a2a",
-        ember: "#a3a3a3",
+        ink: "var(--ink)",
+        graphite: "var(--graphite)",
+        mist: "var(--mist)",
+        mint: "var(--mint)",
+        moss: "var(--muted)",
+        ember: "var(--ember)",
+        line: "var(--line)",
+        panel: "var(--panel)",
+        muted: "var(--muted)",
       },
       fontFamily: {
         display: ["var(--font-geist-sans)", "sans-serif"],
@@ -23,7 +27,9 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-fade":
-          "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
+          "linear-gradient(to right, color-mix(in srgb, var(--mist) 4%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, var(--mist) 4%, transparent) 1px, transparent 1px)",
+        "hero-glow":
+          "radial-gradient(ellipse 80% 50% at 50% 0%, color-mix(in srgb, var(--mist) 8%, transparent), transparent 55%)",
       },
       keyframes: {
         rise: {

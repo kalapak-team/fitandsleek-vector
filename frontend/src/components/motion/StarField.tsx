@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-/** Soft particle field inspired by x.ai hero WebGL atmospheres. */
+/** Soft particle field that follows light/dark theme tokens. */
 export function StarField({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -19,6 +19,9 @@ export function StarField({ className }: { className?: string }) {
 
     type Star = { x: number; y: number; z: number; r: number; a: number };
     let stars: Star[] = [];
+
+    const starRgb = () =>
+      getComputedStyle(document.documentElement).getPropertyValue("--star-rgb").trim() || "255, 255, 255";
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -43,10 +46,11 @@ export function StarField({ className }: { className?: string }) {
     const draw = () => {
       t += 0.0025;
       ctx.clearRect(0, 0, w, h);
+      const rgb = starRgb();
 
       const g = ctx.createRadialGradient(w * 0.55, h * 0.35, 0, w * 0.55, h * 0.35, Math.max(w, h) * 0.7);
-      g.addColorStop(0, "rgba(255,255,255,0.045)");
-      g.addColorStop(0.45, "rgba(255,255,255,0.015)");
+      g.addColorStop(0, `rgba(${rgb},0.045)`);
+      g.addColorStop(0.45, `rgba(${rgb},0.015)`);
       g.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
@@ -57,7 +61,7 @@ export function StarField({ className }: { className?: string }) {
         const y = s.y + Math.cos(t * 0.6 + s.z * 8) * 0.25;
         const pulse = 0.65 + Math.sin(t * 2 + s.z * 20) * 0.35;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(255,255,255,${s.a * pulse})`;
+        ctx.fillStyle = `rgba(${rgb},${s.a * pulse})`;
         ctx.arc(x, y, s.r, 0, Math.PI * 2);
         ctx.fill();
       }
@@ -68,9 +72,15 @@ export function StarField({ className }: { className?: string }) {
     resize();
     draw();
     window.addEventListener("resize", resize);
+    const mo = new MutationObserver(() => {
+      /* theme class changes — next frame picks new --star-rgb */
+    });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      mo.disconnect();
     };
   }, []);
 

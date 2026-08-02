@@ -16,11 +16,11 @@ export function HorizontalScrollGallery() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   return (
-    <section ref={target} className="relative h-[300vh] border-t border-white/10 bg-black">
+    <section ref={target} className="relative h-[300vh] border-t border-line bg-ink">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <div className="fs-container absolute left-0 right-0 top-16 z-10">
-          <p className="text-[13px] text-white/40">Product flows</p>
-          <h2 className="mt-3 text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.03em] text-white">
+          <p className="text-[13px] text-mist/40">Product flows</p>
+          <h2 className="mt-3 text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.03em] text-mist">
             Built for real retail search
           </h2>
         </div>
@@ -28,11 +28,11 @@ export function HorizontalScrollGallery() {
           {slides.map((s) => (
             <article
               key={s.title}
-              className="relative h-[52vh] w-[78vw] shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0a] p-8 md:w-[40vw] md:p-10"
+              className="relative h-[52vh] w-[78vw] shrink-0 overflow-hidden rounded-2xl border border-line bg-graphite p-8 md:w-[40vw] md:p-10"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.06),transparent_45%)]" />
-              <h3 className="relative text-3xl font-semibold tracking-tight text-white md:text-4xl">{s.title}</h3>
-              <p className="relative mt-4 max-w-md text-white/45">{s.body}</p>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,color-mix(in_srgb,var(--mist)_6%,transparent),transparent_45%)]" />
+              <h3 className="relative text-3xl font-semibold tracking-tight text-mist md:text-4xl">{s.title}</h3>
+              <p className="relative mt-4 max-w-md text-mist/45">{s.body}</p>
             </article>
           ))}
         </motion.div>

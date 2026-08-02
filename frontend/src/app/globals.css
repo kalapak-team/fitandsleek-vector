@@ -2,11 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* Light (default for no-flash when script adds .dark) */
+:root,
+html.light {
+  --background: #f4f4f5;
+  --foreground: #0a0a0a;
+  --ink: #f4f4f5;
+  --graphite: #ffffff;
+  --mist: #0a0a0a;
+  --mint: #0a0a0a;
+  --ember: #c2410c;
+  --muted: #71717a;
+  --line: rgba(0, 0, 0, 0.1);
+  --panel: rgba(0, 0, 0, 0.03);
+  --panel-strong: rgba(0, 0, 0, 0.05);
+  --btn-bg: #0a0a0a;
+  --btn-fg: #ffffff;
+  --btn-bg-hover: #27272a;
+  --ghost-hover: rgba(0, 0, 0, 0.04);
+  --input-bg: #ffffff;
+  --star-rgb: 0, 0, 0;
+  --glow: rgba(0, 0, 0, 0.06);
+  --selection-bg: rgba(0, 0, 0, 0.14);
+  --selection-fg: #fff;
+  color-scheme: light;
+}
+
+html.dark {
   --background: #000000;
   --foreground: #ededed;
+  --ink: #000000;
+  --graphite: #0a0a0a;
+  --mist: #ededed;
+  --mint: #ffffff;
+  --ember: #fb923c;
   --muted: #8a8a8a;
   --line: rgba(255, 255, 255, 0.1);
+  --panel: rgba(255, 255, 255, 0.03);
+  --panel-strong: rgba(255, 255, 255, 0.06);
+  --btn-bg: #ffffff;
+  --btn-fg: #000000;
+  --btn-bg-hover: #f4f4f5;
+  --ghost-hover: rgba(255, 255, 255, 0.04);
+  --input-bg: #000000;
+  --star-rgb: 255, 255, 255;
+  --glow: rgba(255, 255, 255, 0.045);
+  --selection-bg: rgba(255, 255, 255, 0.2);
+  --selection-fg: #000;
+  color-scheme: dark;
 }
 
 html {
@@ -19,8 +62,8 @@ body {
 }
 
 ::selection {
-  background: rgba(255, 255, 255, 0.2);
-  color: #000;
+  background: var(--selection-bg);
+  color: var(--selection-fg);
 }
 
 .fs-container {
@@ -28,23 +71,48 @@ body {
 }
 
 .fs-btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium tracking-tight text-black transition hover:bg-white/90;
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium tracking-tight transition;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+}
+
+.fs-btn:hover {
+  background: var(--btn-bg-hover);
 }
 
 .fs-btn-ghost {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-transparent px-5 py-2.5 text-sm font-medium tracking-tight text-mist transition hover:border-white/35 hover:bg-white/[0.04];
+  @apply inline-flex items-center justify-center gap-2 rounded-full border bg-transparent px-5 py-2.5 text-sm font-medium tracking-tight text-mist transition;
+  border-color: var(--line);
+}
+
+.fs-btn-ghost:hover {
+  background: var(--ghost-hover);
+  border-color: color-mix(in srgb, var(--mist) 35%, transparent);
 }
 
 .fs-panel {
-  @apply border border-white/10 bg-white/[0.03] backdrop-blur;
+  @apply border backdrop-blur;
+  border-color: var(--line);
+  background: var(--panel);
 }
 
 .fs-input {
-  @apply w-full rounded-lg border border-white/15 bg-black px-3 py-2.5 text-sm text-mist outline-none transition placeholder:text-white/30 focus:border-white/40;
+  @apply w-full rounded-lg border px-3 py-2.5 text-sm text-mist outline-none transition;
+  border-color: var(--line);
+  background: var(--input-bg);
+}
+
+.fs-input::placeholder {
+  color: color-mix(in srgb, var(--mist) 30%, transparent);
+}
+
+.fs-input:focus {
+  border-color: color-mix(in srgb, var(--mist) 40%, transparent);
 }
 
 .fs-label {
-  @apply mb-1.5 block text-xs uppercase tracking-[0.16em] text-white/40;
+  @apply mb-1.5 block text-xs uppercase tracking-[0.16em];
+  color: color-mix(in srgb, var(--mist) 40%, transparent);
 }
 
 html.lenis,

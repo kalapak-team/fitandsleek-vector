@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AuthUser, clearSession, getUser } from "@/lib/auth";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const items = [
   { href: "/console", label: "Overview" },
@@ -26,9 +27,12 @@ export function ConsoleNav() {
 
   return (
     <aside className="fs-panel flex w-full flex-col gap-1 p-4 md:min-h-[70vh] md:w-56">
-      <Link href="/" className="mb-4 font-display text-lg font-bold text-mist">
-        FitandSleek <span className="text-mint">Vector</span>
-      </Link>
+      <div className="mb-4 flex items-start justify-between gap-2">
+        <Link href="/" className="font-display text-lg font-bold text-mist">
+          FitandSleek <span className="text-mint">Vector</span>
+        </Link>
+        <ThemeToggle className="shrink-0" />
+      </div>
       {items.map((item) => {
         const active = pathname === item.href;
         return (
@@ -43,7 +47,7 @@ export function ConsoleNav() {
           </Link>
         );
       })}
-      <div className="mt-auto border-t border-mist/10 pt-4">
+      <div className="mt-auto border-t border-line pt-4">
         {user ? (
           <>
             <p className="truncate text-xs text-mist/45">{user.email}</p>

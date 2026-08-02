@@ -24,17 +24,17 @@ export function SpotlightCard({ title, body, className }: SpotlightCardProps) {
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={cn("relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-7", className)}
+      className={cn("relative overflow-hidden rounded-2xl border border-line bg-panel p-6 md:p-7", className)}
     >
       <div
         className="pointer-events-none absolute -inset-px transition-opacity duration-300"
         style={{
           opacity: hover ? 1 : 0,
-          background: `radial-gradient(420px circle at ${pos.x}px ${pos.y}px, rgba(255,255,255,0.12), transparent 40%)`,
+          background: `radial-gradient(420px circle at ${pos.x}px ${pos.y}px, color-mix(in srgb, var(--mist) 12%, transparent), transparent 40%)`,
         }}
       />
-      <h3 className="relative text-lg font-semibold tracking-tight text-white">{title}</h3>
-      <p className="relative mt-3 text-sm leading-relaxed text-white/45">{body}</p>
+      <h3 className="relative text-lg font-semibold tracking-tight text-mist">{title}</h3>
+      <p className="relative mt-3 text-sm leading-relaxed text-mist/45">{body}</p>
     </div>
   );
 }
